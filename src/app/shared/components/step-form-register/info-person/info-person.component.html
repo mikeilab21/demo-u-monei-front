@@ -1,0 +1,199 @@
+<p-toast></p-toast>
+<br>
+<section>
+  <h1><b>Ingresa tu información personal</b></h1>
+  <br>
+  <form [formGroup]="formRegisterPersonal">
+    <div class="grid">
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="nameUser" placeholder="Escribe tu nombre" id="user"
+            pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('nameUser')?.invalid && formRegisterPersonal.get('nameUser')?.touched }">
+          <label>Nombre completo</label>
+          <div
+            *ngIf="formRegisterPersonal.get('nameUser')?.invalid && (formRegisterPersonal.get('nameUser')?.dirty || formRegisterPersonal.get('nameUser')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('nameUser')?.errors?.['required']">El campo de nombre es
+              obligatorio.</span>
+            <span *ngIf="formRegisterPersonal.get('nameUser')?.errors?.['pattern']">El campo debe contener solo
+              letras.</span>
+            <span *ngIf="formRegisterPersonal.get('nameUser')?.errors?.['minlength']">El nombre debe tener al menos 3
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="identification" placeholder="Digita tu CC" id="idCC"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="9" maxlength="15"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('identification')?.invalid && formRegisterPersonal.get('identification')?.touched }">
+          <label>Número de identificación</label>
+          <div
+            *ngIf="formRegisterPersonal.get('identification')?.invalid && (formRegisterPersonal.get('identification')?.dirty || formRegisterPersonal.get('identification')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('identification')?.errors?.['required']">El número de identificación
+              es
+              obligatorio.</span>
+            <span *ngIf="formRegisterPersonal.get('identification')?.errors?.['minlength']">El número debe tener al
+              menos 10
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-4" *ngIf="disabledNit">
+        <div class="inputbox">
+          <input type="text" formControlName="nit" placeholder="Digita el NIT de tu empresa" id="idNit"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="9" maxlength="15"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('nit')?.invalid && formRegisterPersonal.get('nit')?.touched }">
+          <label>Número de NIT</label>
+          <div
+            *ngIf="formRegisterPersonal.get('nit')?.invalid && (formRegisterPersonal.get('nit')?.dirty || formRegisterPersonal.get('nit')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('nit')?.errors?.['required']">El número de nit es
+              obligatorio.</span>
+            <span *ngIf="formRegisterPersonal.get('nit')?.errors?.['minlength']">El número debe tener al menos 10
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="city" placeholder="Escribe tu ciudad de residencia" id="city"
+            pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('city')?.invalid && formRegisterPersonal.get('city')?.touched }">
+          <label>Ciudad</label>
+          <div
+            *ngIf="formRegisterPersonal.get('city')?.invalid && (formRegisterPersonal.get('city')?.dirty || formRegisterPersonal.get('city')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('city')?.errors?.['required']">El campo municipio es
+              obligatorio.</span>
+            <span *ngIf="formRegisterPersonal.get('city')?.errors?.['pattern']">El campo solo admite
+              letras y espacios.</span>
+            <span *ngIf="formRegisterPersonal.get('city')?.errors?.['minlength']">El municipio debe tener al menos 3
+              caracteres.</span>
+            <span *ngIf="formRegisterPersonal.get('city')?.errors?.['maxlength']">El municipio debe terner máximo 60
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="address" placeholder="Escribe tu dirección física" id="direccion"
+            maxlength="100"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('address')?.invalid && formRegisterPersonal.get('address')?.touched }">
+          <label>Dirección</label>
+          <div
+            *ngIf="formRegisterPersonal.get('address')?.invalid && (formRegisterPersonal.get('address')?.dirty || formRegisterPersonal.get('address')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('address')?.errors?.['required']">La direción es obligatoria.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="celphoneNumber" placeholder="Digita tu número de celular" id="cell"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="10" maxlength="15"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('celphoneNumber')?.invalid && formRegisterPersonal.get('celphoneNumber')?.touched }">
+          <label>Teléfono móvil</label>
+
+          <div
+            *ngIf="formRegisterPersonal.get('celphoneNumber')?.invalid && (formRegisterPersonal.get('celphoneNumber')?.dirty || formRegisterPersonal.get('celphoneNumber')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('celphoneNumber')?.errors?.['required']">El número de celular es
+              obligatorio.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="email" placeholder="Escribe tu correo electrónico" id="mail"
+            [ngClass]="{ 'invalid-input': formRegisterPersonal.get('email')?.invalid && formRegisterPersonal.get('email')?.touched }">
+          <label>E-mail</label>
+
+          <div
+            *ngIf="formRegisterPersonal.get('email')?.invalid && (formRegisterPersonal.get('email')?.dirty || formRegisterPersonal.get('email')?.touched)">
+            <span *ngIf="formRegisterPersonal.get('email')?.errors?.['required']">El
+              correo electrónico es obligatorio.</span>
+            <span *ngIf="formRegisterPersonal.get('email')?.errors?.['email']">El
+              formato del correo electrónico no es válido.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-12 lg:col-12">
+        <div class="inputbox">
+          <p-checkbox formControlName="acceptTerm" value="Aceptar terminos" id="politicas-link"></p-checkbox>
+          <h1 class="terminos-label">
+            He leído y aceptado la Autorización de <button type="button" class="button-link" (click)="validTerminos()">Tratamiento de
+              datos y política de privacidad,</button>
+            declarando bajo gravedad de juramento que estoy autorizado para suministrar la información requerida.
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-nogutter justify-content-end">
+      <p-button label="Siguiente" (onClick)="sendDataPersonal()" icon="pi pi-angle-right" iconPos="right"
+        styleClass="p-button-help" [disabled]="formRegisterPersonal.invalid">
+      </p-button>
+    </div>
+  </form>
+
+</section>
+
+<p-dialog header="Política de Privacidad" [(visible)]="checkTerm" [modal]="true" [style]="{width: '50vw'}">
+  <div class="container" style="text-align: justify">
+    <header>
+      <h1><strong>Estimados clientes y usuarios,</strong></h1>
+    </header>
+    <main>
+
+      <p>En el marco de nuestra operación como empresa especializada en la generación de alivios financieros, nos
+        complace informarles acerca de nuestra política y compromiso con la protección de sus datos personales y
+        sensibles, en estricto cumplimiento de la normativa vigente sobre habeas data y privacidad de datos.</p>
+
+      <p><strong>Finalidad de la Recopilación de Datos:</strong><br>
+        Los datos personales y sensibles que recopilamos tienen como única finalidad la prestación de nuestros servicios
+        de alivio financiero, con el objetivo de ofrecer soluciones efectivas y personalizadas para mejorar su situación
+        económica.</p>
+
+      <p><strong>Consentimiento Informado:</strong><br>
+        Antes de recopilar cualquier dato personal o sensible, obtendremos su consentimiento expreso y claro. Este
+        consentimiento será requerido de manera previa y podrá ser revocado en cualquier momento, garantizando su
+        control sobre sus datos.</p>
+
+      <p><strong>Seguridad de los Datos:</strong><br>
+        Implementamos medidas de seguridad técnicas, físicas y administrativas para garantizar la confidencialidad,
+        integridad y disponibilidad de sus datos personales. Solo el personal autorizado tendrá acceso a esta
+        información.</p>
+
+      <p><strong>Derechos de los Titulares de Datos:</strong><br>
+        De acuerdo con la normativa de habeas data, usted tiene derecho a acceder, rectificar, actualizar o suprimir sus
+        datos personales, así como a oponerse al tratamiento de los mismos. Puede ejercer estos derechos a través de los
+        canales de contacto proporcionados al final de este comunicado.</p>
+
+      <p><strong>Transferencia y Compartición de Datos:</strong><br>
+        En ningún caso compartiremos sus datos personales y sensibles con terceros sin su consentimiento expreso, salvo
+        cuando sea necesario para cumplir con obligaciones legales o con el fin de prestarle nuestros servicios de
+        alivio financiero.</p>
+
+      <p><strong>Periodo de Conservación de Datos:</strong><br>
+        Sus datos serán conservados únicamente durante el tiempo necesario para cumplir con la finalidad para la cual
+        fueron recopilados y de acuerdo con las obligaciones legales aplicables.</p>
+
+      <p><strong>Responsable del Tratamiento:</strong><br>
+        U-monei es el responsable del tratamiento de sus datos personales y sensibles. Si tiene alguna
+        pregunta o inquietud relacionada con la privacidad de sus datos, no dude en ponerse en contacto con nuestro
+        Oficial de Protección de Datos a través de <a href="mailto:somos@umonei.com">somos@umonei.com</a> | <a
+          href="tel:3125478996">312-547-8996</a></p>
+
+      <p>En U-Monei, nos tomamos en serio la protección de sus datos personales y sensibles, y estamos comprometidos en
+        garantizar que su información sea tratada de manera ética, segura y confidencial.</p>
+
+      <p>Agradecemos la confianza que ha depositado en nosotros y nos ponemos a su disposición para cualquier consulta o
+        solicitud relacionada con sus datos personales.</p>
+
+    </main>
+    <footer>
+      <p><strong>Atentamente, U-Monei.</strong></p>
+    </footer>
+  </div>
+</p-dialog>

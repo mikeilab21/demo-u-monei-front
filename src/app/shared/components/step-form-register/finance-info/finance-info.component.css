@@ -1,0 +1,81 @@
+
+:host{
+  margin-left: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 0;
+  font-size: 17px;
+  font-family: 'byom',sans-serif;
+}
+
+
+.inputbox{
+  position: relative;
+  margin: 30px 0;
+  /* border-bottom: 2px solid rgb(122, 43, 247); */
+}
+.inputbox label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #311557;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label,
+input:invalid ~ label {
+top: -5px;
+position: absolute;
+}
+.inputbox input {
+  width: 90%;
+  height: 50px;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgb(122, 43, 247);
+  outline: none;
+  font-size: 1em;
+  padding:0 35px 0 5px;
+  color: #311557;
+}
+
+.inputbox i {
+  position: absolute;
+  right: 50px; /* Ajusta la distancia entre el input y el icono */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(122, 43, 247)!important;
+}
+
+.invalid-input{
+  border-bottom: 2px solid red!important;
+}
+
+span{
+  color: red;
+  font-size: small;
+}
+
+.invalid-button{
+  background-color: rgb(226, 226, 226);
+  color: rgb(177, 177, 177);
+  cursor: not-allowed; /* Cambiar el cursor para cuando el botón está deshabilitado */
+}
+
+.p-label{
+  display:block;
+  margin-top: 13px;
+  color: #311557;
+  margin-left: 5px;
+}
+
+.marginRadio{
+  margin: 10px;
+}
+

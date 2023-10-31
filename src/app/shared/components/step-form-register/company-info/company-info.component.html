@@ -1,0 +1,324 @@
+<p-toast></p-toast>
+
+<br>
+<section>
+  <h1><b>Empresa</b></h1>
+  <br>
+  <form [formGroup]="formRegisterInfoEmpresa">
+    <div class="grid">
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Nit</label>
+        <div class="p-fluid">
+          <p-inputNumber  mode="decimal" inputId="withoutgrouping" [useGrouping]="false" formControlName="companyNit" inputId="nit">
+          </p-inputNumber>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="inputbox">
+          <input type="text" formControlName="nameCompany" placeholder="Escribe el nombre de la empresa" id="company"
+            pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('nameCompany')?.invalid && formRegisterInfoEmpresa.get('nameCompany')?.touched }">
+          <label>Nombre completo de la empresa</label>
+          <div
+            *ngIf="formRegisterInfoEmpresa.get('nameCompany')?.invalid && (formRegisterInfoEmpresa.get('nameCompany')?.dirty || formRegisterInfoEmpresa.get('nameCompany')?.touched)">
+            <span *ngIf="formRegisterInfoEmpresa.get('nameCompany')?.errors?.['required']">El campo de nombre de empresa
+              es
+              obligatorio.</span>
+            <span *ngIf="formRegisterInfoEmpresa.get('nameCompany')?.errors?.['pattern']">El campo debe contener solo
+              letras.</span>
+            <span *ngIf="formRegisterInfoEmpresa.get('nameCompany')?.errors?.['minlength']">El nombre debe tener al
+              menos 3
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- aca va codico dropdowm -->
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Tipo de sociedad</label>
+        <p-dropdown [options]="companyTypes" formControlName="typeSociety" placeholder="Sociedad empresarial"
+          [editable]="false" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true"
+          filterPlaceholder="Buscar opción" emptyFilterMessage="Sin resultados">
+        </p-dropdown>
+
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('typeSociety')?.invalid && (formRegisterInfoEmpresa.get('typeSociety')?.dirty || formRegisterInfoEmpresa.get('idPais')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('typeSociety')?.errors?.['required']">El indicador de region es
+            obligatorio.</span>
+        </div>
+      </div>
+
+      <!-- aca va codico dropdowm -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <label class="p-label">Indicativo teléfono</label>
+        <p-dropdown [options]="idTelephone" formControlName="codeTelephone" placeholder="600" [editable]="false"
+          optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" filterPlaceholder="Buscar opción"
+          emptyFilterMessage="Sin resultados">
+        </p-dropdown>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="inputbox">
+          <input type="text" formControlName="telephone" placeholder="Digita el número de teléfono" id="idTelephone"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+          <label>Teléfono fijo</label>
+        </div>
+
+      </div>
+
+      <!-- aca va codico dropdowm -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <label class="p-label">Indicativo celular</label>
+        <p-dropdown [options]="countryCodes"  placeholder="+00" [editable]="false"
+          optionLabel="dial_code" [filter]="true" filterBy="name" [showClear]="true" filterPlaceholder="Buscar opción" [(ngModel)]="codePrueba"
+          emptyFilterMessage="Sin resultados" [ngModelOptions]="{standalone: true}">
+          <ng-template pTemplate="selectedItem">
+            <div class="flex align-items-center gap-2" *ngIf="codePrueba">
+              <i [class]="getFlagClass(codePrueba.code)"></i>
+                <div>{{ codePrueba.dial_code }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <i [class]="getFlagClass(country.code)"></i>
+                <div>{{ country.name }}</div>
+            </div>
+        </ng-template>
+        </p-dropdown>
+
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('codePhone')?.invalid && (formRegisterInfoEmpresa.get('codePhone')?.dirty || formRegisterInfoEmpresa.get('codePhone')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('codePhone')?.errors?.['required']">El indicativo de celular es
+            obligatorio.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="inputbox">
+          <input type="text" formControlName="celphoneNumber" placeholder="Digita tu número de celular" id="cell"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="10" maxlength="15"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('celphoneNumber')?.invalid && formRegisterInfoEmpresa.get('celphoneNumber')?.touched }">
+          <label>Número de celular</label>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('celphoneNumber')?.invalid && (formRegisterInfoEmpresa.get('celphoneNumber')?.dirty || formRegisterInfoEmpresa.get('celphoneNumber')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('celphoneNumber')?.errors?.['required']">El número de celular es
+            obligatorio.</span>
+          <span *ngIf="formRegisterInfoEmpresa.get('celphoneNumber')?.errors?.['minlength']">El número debe tener al
+            menos 10 caracteres.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <hr>
+        <h1><b>Datos de ubicación de la empresa</b></h1>
+      </div>
+
+      <br>
+
+      <div class="col-12 md:col-12 lg:col-9">
+        <div class="inputbox">
+          <i class="pi pi-info-circle" pTooltip="{{ejAddress}}" tooltipPosition="bottom"></i>
+          <input type="text" formControlName="addressCompany" placeholder="Escribe la dirección fisica de la empresa"
+            id="direccion" maxlength="254"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('addressCompany')?.invalid && formRegisterInfoEmpresa.get('addressCompany')?.touched }">
+          <label>Dirección completa de la empresa</label>
+          <div
+            *ngIf="formRegisterInfoEmpresa.get('addressCompany')?.invalid && (formRegisterInfoEmpresa.get('addressCompany')?.dirty || formRegisterInfoEmpresa.get('addressCompany')?.touched)">
+            <span *ngIf="formRegisterInfoEmpresa.get('addressCompany')?.errors?.['required']">La dirección es
+              obligatoria.</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <hr>
+        <h1><b>Información de la empresa</b></h1>
+      </div>
+      <br>
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Número de empleados</label>
+        <div class="p-fluid">
+          <p-inputNumber formControlName="numberPerson" placeholder="Digite el número de empleados" inputId="emp"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('numberPerson')?.invalid && formRegisterInfoEmpresa.get('numberPerson')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('numberPerson')?.invalid && (formRegisterInfoEmpresa.get('numberPerson')?.dirty || formRegisterInfoEmpresa.get('numberPerson')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('numberPerson')?.errors?.['required']">El número de empleados es obligatorio.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Ingresos anuales. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="annualIncome" inputId="currency-cop1" currency="COP"
+            currencyDisplay="code" locale="es-CO" [minFractionDigits]="0"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('annualIncome')?.invalid && formRegisterInfoEmpresa.get('annualIncome')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('annualIncome')?.invalid && (formRegisterInfoEmpresa.get('annualIncome')?.dirty || formRegisterInfoEmpresa.get('annualIncome')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('annualIncome')?.errors?.['required']">Los ingresos anuales son obligatorios.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Egresos anuales. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="annualExpenditures" inputId="currency-cop2" currency="COP"
+            currencyDisplay="code" locale="es-CO" [minFractionDigits]="0"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('annualExpenditures')?.invalid && formRegisterInfoEmpresa.get('annualExpenditures')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('annualExpenditures')?.invalid && (formRegisterInfoEmpresa.get('annualExpenditures')?.dirty || formRegisterInfoEmpresa.get('annualExpenditures')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('annualExpenditures')?.errors?.['required']">Los egresos anuales son obligatorios.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Activos totales. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="totalAssets" inputId="currency-cop3" currency="COP"
+            currencyDisplay="code" locale="es-CO" [minFractionDigits]="0"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('totalAssets')?.invalid && formRegisterInfoEmpresa.get('totalAssets')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('totalAssets')?.invalid && (formRegisterInfoEmpresa.get('totalAssets')?.dirty || formRegisterInfoEmpresa.get('totalAssets')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('totalAssets')?.errors?.['required']">Los activos totales son obligatorios.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Pasivos totales. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="totalLiabilities" inputId="currency-cop4" currency="COP"
+            currencyDisplay="code" locale="es-CO" [minFractionDigits]="0"
+            [ngClass]="{ 'invalid-input': formRegisterInfoEmpresa.get('totalLiabilities')?.invalid && formRegisterInfoEmpresa.get('totalLiabilities')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('totalLiabilities')?.invalid && (formRegisterInfoEmpresa.get('totalLiabilities')?.dirty || formRegisterInfoEmpresa.get('totalLiabilities')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('totalLiabilities')?.errors?.['required']">Los pasivos totales son obligatorios.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-4">
+        <label class="p-label">Patrimonio. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="equityTotal" inputId="currency-cop5" currency="COP"
+            currencyDisplay="code" locale="es-CO" [minFractionDigits]="0">
+          </p-inputNumber>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <label class="p-label">Fecha de constitución</label>
+        <div class="p-fluid">
+          <p-calendar formControlName="constitutionDate" dateFormat="yy/mm/dd" [maxDate]="maxDate" [showIcon]="true"
+            [disabledDates]="invalidDates"></p-calendar>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <label class="p-label">Código CIIU (solamente el principal)</label>
+        <p-dropdown [options]="ciiuCodes" [(ngModel)]="companyCiiu" [ngModelOptions]="{standalone: true}" placeholder="7020/M7020-Actividad"
+          [editable]="false" optionLabel="line" [filter]="true" filterBy="line" [showClear]="true"
+          filterPlaceholder="Buscar opción" emptyFilterMessage="Sin resultados" [virtualScroll]="true" [virtualScrollItemSize]="20">
+        </p-dropdown>
+
+        <div
+          *ngIf="formRegisterInfoEmpresa.get('companyCiiu')?.invalid && (formRegisterInfoEmpresa.get('companyCiiu')?.dirty || formRegisterInfoEmpresa.get('companyCiiu')?.touched)">
+          <span *ngIf="formRegisterInfoEmpresa.get('companyCiiu')?.errors?.['required']">El código CIIU es
+            obligatorio.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <br>
+        <hr>
+        <h1><b>Residencia fiscal de la empresa</b></h1>
+        <p>Por favor completa los siguientes datos de la jurisdicción de residencia para efectos
+          fiscales de la persona jurídica que representas.
+        </p>
+        <label class="p-label">¿Obligado a tributar en otros países?</label>
+      </div>
+
+
+
+      <div class="flex flex-wrap gap-6 marginRadio">
+        <div class="align-items-center">
+          <p-radioButton name="oTributaria" value="Si" label="Sí" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="optTributar" inputId="optSi" pStyleClass=""></p-radioButton>
+        </div>
+
+        <div class="align-items-center">
+          <p-radioButton name="oTributaria" value="No" label="No" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="optTributar" inputId="optNo"></p-radioButton>
+        </div>
+      </div>
+
+
+      <br>
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <hr>
+        <h1><b>Operaciones en moneda extranjera</b></h1>
+        <p>Por favor completa los siguientes datos de la declaración de fondos internacionales.</p>
+        <label class="p-label">¿Realizas operaciones en moneda extranjera?</label>
+      </div>
+
+      <div class="flex flex-wrap gap-6 marginRadio">
+        <div class="align-items-center">
+          <p-radioButton name="oMonedaExt" value="Si" label="Sí" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="monedaExt" inputId="monedaSi" pStyleClass=""></p-radioButton>
+        </div>
+
+        <div class="align-items-center">
+          <p-radioButton name="oMonedaExt" value="No" label="No" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="monedaExt" inputId="monedaNo"></p-radioButton>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <label class="p-label">¿Realizas operaciones en monedas virtuales?</label>
+      </div>
+
+      <div class="flex flex-wrap gap-6 marginRadio">
+        <div class="align-items-center">
+          <p-radioButton name="oMonedaVir" value="Si" label="Sí" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="monedaVir" inputId="monedaVirSi" pStyleClass=""></p-radioButton>
+        </div>
+
+        <div class="align-items-center">
+          <p-radioButton name="oMonedaVir" value="No" label="No" [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="monedaVir" inputId="monedaVirNo"></p-radioButton>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</section>
+
+<br>
+<div class="grid justify-content-center">
+  <div class="col">
+    <!-- <p-button label="Anterior" (onClick)="backPage()" icon="pi pi-angle-left" styleClass="p-button-help"
+      iconPos="left"></p-button> -->
+  </div>
+
+  <div class="col-fixed">
+    <p-button label="Siguiente" (onClick)="sendDataCompany()" icon="pi pi-angle-right" iconPos="right"
+      styleClass="p-button-help" [disabled]="formRegisterInfoEmpresa.invalid">
+    </p-button>
+  </div>
+</div>

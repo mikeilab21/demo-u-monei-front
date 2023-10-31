@@ -1,0 +1,357 @@
+<p-toast></p-toast>
+<div class="html">
+  <div class="body" id="top">
+    <article>
+      <!--- #HERO -->
+      <section class="section hero" aria-label="hero" id="home">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="h1 hero-title">U-Monei alivio económico fácil, rápido y sencillo</h1>
+            <p class="section-text">
+              ¿Necesitas dinero para cubrir tus necesidades inmediatas?
+              Solicita tu asistencia económica con U-Monei de forma digital.
+            </p>
+            <p class="section-text">
+              Somos la solución de financiamiento con la que los <b>"CONTRATISTAS y EMPRESARIOS"</b>
+              pueden convertir sus facturas pendientes por cobrar en liquidez inmediata mientras esperan su pago.
+            </p>
+
+            <ul class="btn-list">
+              <li>
+                <button class="glow-on-hover" (click)="send()" type="button"> ¡Solicita Ya! </button>
+              </li>
+            </ul>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="../../../../assets/layout/images/landing/principal.png" width="769" height="804" alt="hero banner"
+              class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+      <section class="section features" id="features" aria-label="features">
+        <div class="container">
+          <p class="section-subtitle">Despeja tus dudas</p>
+          <h2 class="h2 section-title">¿Cómo funciona U-monei?</h2>
+          <div class="card flex justify-content-center">
+            <p-accordion [activeIndex]="0">
+              <p-accordionTab header="Paso-1 Simula tu solicitud de asistencia económica">
+                <h2>
+                  Introduce cuánto dinero necesitas, el valor del contrato que tienes firmado,
+                  el cual será el soporte de pago para la solicitud de tu asistencia económica,
+                  y define el plazo de pago.
+                </h2>
+              </p-accordionTab>
+              <p-accordionTab header="Paso-2 Inicia el registro en el sitio web">
+                <h1>
+                  <b>
+                    ¿Qué necesitas para crear tu cuenta y solicitar tu asistencia económica?
+                  </b>
+                </h1>
+                <h2>
+                  Para iniciar el proceso te solicitaremos algunos documentos para validar tus datos fiscales y
+                  financieros de tu contrato.
+                  ¡Puedes estar tranquilo! Esta información solo la utilizaremos para la creación de tu cuenta.
+                </h2>
+                <br>
+                <h2>
+                  Luego de completar el cargue de documentos para realizar la solicitud,
+                  el estudio de la misma tomará un plazo máximo de 24 horas.
+                  De salir aprobada, recibirás un correo con el contrato para ser firmado.
+                </h2>
+              </p-accordionTab>
+
+              <p-accordionTab header="Paso-3 Adjunta los documentos">
+                <h1><b>SI ERES CONTRATISTA</b></h1>
+                <ul class="estilo-lista">
+                  <li>Documento de identidad</li>
+                  <li>Certificación bancaria</li>
+                  <li>Contrato laboral</li>
+                  <li>RUT</li>
+                </ul>
+                <br>
+                <h1><b>SI ERES EMPRESA</b></h1>
+                <ul class="estilo-lista">
+                  <li>Documento identidad representante legal.</li>
+                  <li>Certificado de Cámara de Comercio con vigencia menor o igual a 30 días.</li>
+                  <li>Foto de la cédula del representante legal a color y por las dos caras.</li>
+                  <li>Extractos bancarios de los últimos 3 meses, Debe ser el original emitido por la entidad
+                    financiera.</li>
+                  <li>Estados Financieros del último año, con corte más reciente del año en curso.</li>
+                </ul>
+                <br>
+                <h1><b>AL MOMENTO DE SUBIR TUS DOCUMENTOS</b></h1>
+                <ul class="estilo-lista">
+                  <li>Adjúntalos en .pdf</li>
+                  <li>No deben tener alteraciones como rayones o manchas.</li>
+                  <li>Súbelos en buena resolución, completos y legibles.</li>
+                  <li>Cuando recibas el correo de confirmación, firma el contrato.</li>
+                </ul>
+              </p-accordionTab>
+              <p-accordionTab header="Paso-4 Firma el contrato y establece tu plan de pagos">
+                <h2>
+                  Tras analizar tus documentos y ser viable tu solicitud de asistencia económica,
+                  recibirás un correo de confirmación para proceder con la firma del contrato.
+                </h2>
+              </p-accordionTab>
+              <p-accordionTab header="Las cuentas claras">
+                <h1><b>SI ERES EMPRESA</b></h1>
+                <ul class="estilo-lista">
+                  <li>Solicita máximo 20 millones de pesos.</li>
+                </ul>
+                <br>
+                <h1><b>SI ERES PERSONA NATURAL</b></h1>
+                <ul class="estilo-lista">
+                  <li>Solicita máximo cinco millones de pesos.</li>
+                </ul>
+                <br>
+                <h1><b>TASA DE INTERÉS</b></h1>
+                <ul class="estilo-lista">
+                  <li>En U-Monei manejamos 2 puntos porcentuales por debajo de la tasa de usura del Banco de la
+                    Republica.</li>
+                </ul>
+                <br>
+                <h1><b>PLANES DE PAGO</b></h1>
+                <ul class="estilo-lista">
+                  <li>Elige el plan que mejor se acomode a tu necesidad: 30, 60 o 90 días.</li>
+                </ul>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+        </div>
+      </section>
+
+      <!-- #FEATURES-->
+      <section class="section features" id="features" aria-label="features">
+        <div class="container">
+
+          <p class="section-subtitle">Nuestra función de aplicación</p>
+
+          <h2 class="h2 section-title">Beneficios impresionantes</h2>
+
+          <ul class="features-list">
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="create-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Fácil de manejar</h3>
+
+                <p class="card-text">
+                  Es una plataforma muy intuitiva
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Totalmente segura</h3>
+
+                <p class="card-text">
+                  La aplicación cuenta con guards para mayor seguridad
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="settings-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Control de usuario</h3>
+
+                <p class="card-text">
+                  Una vez logueado, permite la administración del usuario.
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="flash-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Rapidez</h3>
+
+                <p class="card-text">
+                  El tiempo de respuesta es optimo.
+                </p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+      <!---#ABOUT-->
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+
+          <figure class="about-banner">
+            <img src="../../../../assets/layout/images/landing/blockchain.png" width="1262" height="1357" loading="lazy"
+              alt="about banner" class="w-100">
+          </figure>
+
+          <div class="about-content">
+
+            <p class="section-subtitle">¿Por qué nosotros?</p>
+
+            <h2 class="h2 section-title">Razones para elegir U-monei</h2>
+
+            <p class="section-text">
+              Nuestra plataforma web te ayuda a desbloquear el pago de los contratos
+              que tienes con tus clientes para que puedas cubrir tus obligaciones inmediatas.
+            </p>
+
+            <ul class="about-list">
+
+              <li class="about-item">
+
+                <div class="item-icon">
+                  <ion-icon name="document" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title">Convierta sus contratos</h3>
+
+                  <p class="item-text">
+                    U-Monei te ofrece la posibilidad de convertir tus contratos
+                    en dinero líquido para cubrir tus gastos inmediatos.
+                  </p>
+                </div>
+
+              </li>
+
+              <li class="about-item">
+
+                <div class="item-icon">
+                  <ion-icon name="server" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title">Datos faciles de manejar</h3>
+
+                  <p class="item-text">
+                    U-Monei, fácil, sencillo y rapido
+                  </p>
+                </div>
+
+              </li>
+
+            </ul>
+
+            <a href="/home/calculator" class="btn btn-secondary">Empecemos ya!!!</a>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- #ABOUT 2-->
+      <section class="section about-2" aria-label="about">
+        <div class="container">
+
+          <div class="about-content">
+            <p class="section-subtitle">Diseño fresco y sorprendente.</p>
+            <h2 class="h2 section-title">Liquidez inmediata para profesionales y empresarios</h2>
+            <p class="section-text">
+              U-Monei es una fintech cuya razón de ser es la inclusión financiera
+              del segmento de los contratistas.
+            </p>
+            <p class="section-text">
+              Desarrollamos solucciones al servicio de los contratistas
+            </p>
+            <a href="/home/calculator" class="btn btn-secondary">Empecemos ya!!!</a>
+          </div>
+
+          <figure class="about-banner">
+            <img src="../../../../assets/layout/images/landing/planes.png" width="1146" height="1226" loading="lazy"
+              alt="about banner" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- #APP-->
+      <!--- #BLOG-->
+
+      <section class="section blog" id="blog" aria-label="blog">
+        <div class="container">
+          <p class="section-subtitle">¡Lo más reciente!</p>
+          <h2 class="h2 section-title">Nuestros consejos y últimas noticias</h2>
+          <ul class="blog-list">
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="../../../../assets/layout/images/landing/u-monei-TMR.png" width="768" height="558" loading="lazy"
+                    alt="Build A Full Web Chat App From Our Scratch" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Balance del Ecosistema Fintech en Colombia</a>
+                  </h3>
+                  <a href="https://www.eltiempo.com/economia/sector-financiero/balance-del-ecosistema-fintech-en-colombia-761324"
+                    target="_blank" class="btn btn-outline">Leer más</a>
+                </div>
+              </div>
+            </li>
+            <li>
+
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="../../../../assets/layout/images/landing/u-monei-Balance.png" width="768" height="558" loading="lazy"
+                    alt="Brush Strokes Energize Trees In Paintings" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">¿Cuántas Fintech Existen En Colombia? </a>
+                  </h3>
+                  <a href="https://www.rankia.co/blog/mejores-opiniones-colombia/4291439-mejores-fintech-colombia"
+                    target="_blank" class="btn btn-outline">Leer más</a>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="../../../../assets/layout/images/landing/u-monei-Fintech.png" width="768" height="558" loading="lazy"
+                    alt="Insights on How to Improve Your Teaching." class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Dólar TRM Hoy En Colombia</a>
+                  </h3>
+                  <a href="https://www.dolar-colombia.com" target="_blank" class="btn btn-outline">Leer más</a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+    </article>
+  </div>
+</div>

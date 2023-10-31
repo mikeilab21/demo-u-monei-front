@@ -1,0 +1,189 @@
+:host {
+  margin-left: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 0;
+  font-size: 17px;
+
+    /**
+  * colors
+  */
+  --russian-violet: rgb(122,43,247);
+  --dark-purple: hsl(268, 22%, 15%);
+  --eerie-black: hsl(240, 4%, 10%);
+  --davys-gray: hsl(0, 0%, 34%);
+  --light-gray: hsl(0, 0%, 84%);
+  --cultured-1: hsl(0, 0%, 98%);
+  --cultured-2: hsl(280, 14%, 96%);
+  --cultured-3: hsl(280, 9%, 94%);
+  --gainsboro: hsl(0, 1%, 85%);
+  --black_10: hsla(0, 0%, 0%, 0.1);
+  --black_5: hsla(0, 0%, 0%, 0.05);
+  --pumpkin: rgb(0, 229, 194);
+  --white: hsl(170, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --nt: #311557;
+  --moradoprueba: #4A00C5;
+
+
+  /**
+   * typography
+   */
+
+  --ff-poppins: 'Poppins', sans-serif;
+  --ff-roboto: 'Roboto', sans-serif;
+  --ff-byom: 'Byom', sans-serif;
+
+  --fs-1: 1.7rem;
+  --fs-2: 1.6rem;
+  --fs-3: 1.5rem;
+  --fs-4: 1.4rem;
+  --fs-5: 1.3rem;
+
+  --fw-900: 900;
+  --fw-700: 700;
+  --fw-600: 600;
+  --fw-500: 500;
+
+}
+
+
+.body {
+ background-color: var(--white);
+ font-family: var(--ff-byom);
+ font-size: 17px;
+}
+
+
+.form-box {
+ width: 90%;
+ height: 100%;
+ position: relative;
+ overflow: hidden;
+ font-family: var(--ff-byom);
+ font-size: 17px;
+ margin: 30px;
+}
+
+.form-box h2 {
+ font-size: var(--fs-1);
+ font-family: var(--ff-byom);
+ margin: 20px;
+ word-wrap: break-word;
+ text-align: center;
+ color: var(--white);
+}
+.h2-pagos {
+ font-size: var(--fs-1);
+ font-family: var(--ff-byom);
+ margin: 20px;
+ word-wrap: break-word;
+ text-align: center;
+ color: var(--black);
+}
+.back-pay{
+ background: var(--white);
+}
+.form-box p {
+   display: block;
+   margin-block-start: 1em;
+   margin-block-end: 1em;
+   margin-inline-start: 0px;
+   margin-inline-end: 0px;
+   text-align: center;
+   color: var(--white);
+}
+
+.range-container input {
+  width: 90%;
+  height: 20px;
+  margin: 10px;
+  padding: 0;
+  background-color: transparent;
+  color: #311557;
+  }
+
+
+.inputbox {
+  position: relative;
+  margin: 30px 0;
+  /* border-bottom: 2px solid rgb(122, 43, 247); */
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #311557;
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+
+input:focus~label,
+input:valid~label,
+input:invalid~label {
+  top: -5px;
+  position: absolute;
+}
+
+.inputbox input {
+  width: 90%;
+  height: 50px;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgb(122, 43, 247);
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #311557;
+}
+
+.inputbox i {
+  position: absolute;
+  right: 50px;
+  /* Ajusta la distancia entre el input y el icono */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(122, 43, 247) !important;
+}
+
+.invalid-input {
+  border-bottom: 2px solid red !important;
+}
+
+span {
+  color: red;
+  font-size: small;
+}
+
+.invalid-button {
+  background-color: rgb(226, 226, 226);
+  color: rgb(177, 177, 177);
+  cursor: not-allowed;
+  /* Cambiar el cursor para cuando el botón está deshabilitado */
+}
+
+.p-label {
+  display: block;
+  margin-top: 13px;
+  color: #311557;
+  margin-left: 5px;
+}
+
+.p-label-r {
+  display: block;
+  margin-top: 13px;
+  color: #311557;
+  margin-left: 40%;
+  margin-right: 25%;
+}
+.marginRadio {
+  margin: 10px;
+}
+
+

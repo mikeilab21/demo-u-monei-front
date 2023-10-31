@@ -1,0 +1,154 @@
+<p-toast></p-toast>
+<br>
+<section style="width: 100%;">
+  <h1><b>Documentos requeridos</b></h1>
+  <br>
+
+    <div class="grid">
+      <div class="col-12 md:col-12 lg:col-12">
+
+        <p-fieldset [toggleable]="true">
+
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <span class="pi pi-file-pdf mr-2" [ngStyle]="{color: 'var(--purple-300)'}"></span>
+              <span class="font-bold text-lg" [ngStyle]="{color: 'var(--purple-300)'}">Documentos personales</span>
+            </div>
+          </ng-template>
+
+          <div class="grid">
+            <div class="contentCenter">
+              <img src="/assets/layout/images/documentsCheck.svg" alt="Imagen" width="48px" height="38px">
+            </div>
+            <div class="col-5 inputbox">
+              <ul>
+                <li>Cédula de ciudadanía en PDF 150%, que sea legible.</li>
+                <li>Datos del pagador del contrato para hacer la confirmación del mismo.</li>
+                <li>Datos del supervisor o jefe directo para confirmar que el contrato está en ejecución sin problemas.</li>
+                <li>Copia de un recibo público que soporte el lugar dónde recide.</li>
+              </ul>
+            </div>
+            <div class="col-6 inputbox">
+              <p-fileUpload name="doc1[]" url="https://www.primefaces.org/cdn/api/upload.php"
+              (onUpload)="onUpload1($event)" [multiple]="true" accept="application/pdf"
+              [maxFileSize]="3000000"  chooseLabel="Cargar" uploadLabel="Subir" [fileLimit]="4" [ariaValueMin]="1"
+              invalidFileSizeMessageDetail="'El tamaño máximo de carga es de 3 MB.'"
+              cancelLabel="Cancelar">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFilesPersonal.length">
+                        <li *ngFor="let file of uploadedFilesPersonal">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+            </div>
+          </div>
+
+        </p-fieldset>
+
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+
+        <p-fieldset [toggleable]="true">
+
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <span class="pi pi-chart-line mr-2" [ngStyle]="{color: 'var(--purple-300)'}"></span>
+              <span class="font-bold text-lg" [ngStyle]="{color: 'var(--purple-300)'}">Documentos financieros</span>
+            </div>
+          </ng-template>
+
+          <div class="grid">
+            <div class="contentCenter">
+              <img src="/assets/layout/images/documentFinance.svg" alt="Imagen" width="48px" height="38px">
+            </div>
+            <div class="col-5 inputbox">
+              <ul>
+                <li>Soporte de pago de la póliza.</li>
+                <li>Certificación Bancaria.</li>
+                <li><h3><b>En caso de aplicar sube los siguientes archivos:</b></h3></li>
+                <ul>
+                  <li>Soporte de pago de una parte del contrato o soporte mensual de pago (emitido por la entidad).</li>
+                  <li>Extracto bancario con el ingreso del pago de la entidad al contratista.</li>
+                  <li>Cuentas de cobro o factura del contratista a la entidad.</li>
+                </ul>
+              </ul>
+            </div>
+            <div class="col-6 inputbox">
+              <p-fileUpload name="doc2[]" url="https://www.primefaces.org/cdn/api/upload.php"
+              (onUpload)="onUpload2($event)" [multiple]="true" accept="application/pdf"
+              [maxFileSize]="3000000" chooseLabel="Cargar" uploadLabel="Subir"  [fileLimit]="5"
+              cancelLabel="Cancelar">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFilesFinance.length">
+                        <li *ngFor="let file of uploadedFilesFinance">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+            </div>
+          </div>
+
+        </p-fieldset>
+
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+
+        <p-fieldset [toggleable]="true">
+
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <span class="pi pi-shield mr-2" [ngStyle]="{color: 'var(--purple-300)'}"></span>
+              <span class="font-bold text-lg" [ngStyle]="{color: 'var(--purple-300)'}">Documentos legales</span>
+            </div>
+          </ng-template>
+
+          <div class="grid">
+            <div class="contentCenter">
+              <img src="/assets/layout/images/documentLike.svg" alt="Imagen" width="48px" height="38px">
+            </div>
+            <div class="col-5 inputbox">
+              <ul>
+                <li>Contrato activo vigente con fecha superior a 60 días para su vencimiento.</li>
+                <li>Póliza de cumplimiento del contrato, pagada por el contratista.</li>
+                <li>Cópia de RUT vigente actualizado con la dirección de residencia actual.</li>
+              </ul>
+            </div>
+            <div class="col-6 inputbox ">
+              <p-fileUpload name="doc3[]" url="https://www.primefaces.org/cdn/api/upload.php"
+               (onUpload)="onUpload3($event)" [multiple]="true"
+                accept="application/pdf" [maxFileSize]="3000000" chooseLabel="Cargar"
+                uploadLabel="Subir"  [fileLimit]="3"
+                cancelLabel="Cancelar">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFilesLegal.length">
+                        <li *ngFor="let file of uploadedFilesLegal">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                    <div *ngIf="uploadedFilesPersonal.length === 3">
+                      <p>Te falta cargar un archivo, por favor verifica.</p>
+                    </div>
+                </ng-template>
+            </p-fileUpload>
+            </div>
+          </div>
+
+        </p-fieldset>
+
+      </div>
+
+    </div>
+</section>
+
+<br>
+<div class="grid justify-content-center">
+  <div class="col">
+    <!-- <p-button label="Anterior" (onClick)="backPage()" icon="pi pi-angle-left" styleClass="p-button-help"
+      iconPos="left"></p-button> -->
+  </div>
+
+  <div class="col-fixed">
+    <p-button label="Siguiente" (onClick)="sendDataDocuments()" icon="pi pi-angle-right" iconPos="right"
+      styleClass="p-button-help">
+    </p-button>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<p-toast></p-toast>
+<br>
+<section style="width: 100%;">
+  <h1><b>Información de referencias personales</b></h1>
+  <br>
+  <form [formGroup]="formRegisterReferences">
+    <div class="grid">
+      <div class="col-12 md:col-12 lg:col-12">
+
+        <p-fieldset [toggleable]="true">
+
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <span class="pi pi-user mr-2" [ngStyle]="{color: 'var(--purple-300)'}"></span>
+              <span class="font-bold text-lg" [ngStyle]="{color: 'var(--purple-300)'}">Ángel finaciero principal</span>
+            </div>
+          </ng-template>
+
+
+          <div class="grid">
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="nameRefOne" placeholder="Escribe su nombre" id="user"
+                pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('nameRefOne')?.invalid && formRegisterReferences.get('nameRefOne')?.touched }">
+              <label>Nombre completo</label>
+              <div
+                *ngIf="formRegisterReferences.get('nameRefOne')?.invalid && (formRegisterReferences.get('nameRefOne')?.dirty || formRegisterReferences.get('nameRefOne')?.touched)">
+                <span *ngIf="formRegisterReferences.get('nameRefOne')?.errors?.['required']">El campo de nombre es
+                  obligatorio.</span>
+                <span *ngIf="formRegisterReferences.get('nameRefOne')?.errors?.['pattern']">El campo debe contener solo
+                  letras.</span>
+                <span *ngIf="formRegisterReferences.get('nameRefOne')?.errors?.['minlength']">El nombre debe tener al
+                  menos 3
+                  caracteres.</span>
+              </div>
+            </div>
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="celphoneRefOne" placeholder="Digita su número de celular" id="cell"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="10" maxlength="15"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('celphoneRefOne')?.invalid && formRegisterReferences.get('celphoneRefOne')?.touched }">
+              <label>Teléfono móvil</label>
+
+              <div
+                *ngIf="formRegisterReferences.get('celphoneRefOne')?.invalid && (formRegisterReferences.get('celphoneRefOne')?.dirty || formRegisterReferences.get('celphoneRefOne')?.touched)">
+                <span *ngIf="formRegisterReferences.get('celphoneRefOne')?.errors?.['required']">El número de celular es
+                  obligatorio.</span>
+              </div>
+            </div>
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="emailReference1" placeholder="Escribe su correo electrónico" id="mail"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('emailReference1')?.invalid && formRegisterReferences.get('emailReference1')?.touched }">
+              <label>E-mail</label>
+
+              <div
+                *ngIf="formRegisterReferences.get('emailReference1')?.invalid && (formRegisterReferences.get('email')?.dirty || formRegisterReferences.get('emailReference1')?.touched)">
+                <span *ngIf="formRegisterReferences.get('emailReference1')?.errors?.['required']">El
+                  correo electrónico es obligatorio.</span>
+                <span *ngIf="formRegisterReferences.get('emailReference1')?.errors?.['email']">El
+                  formato del correo electrónico no es válido.</span>
+              </div>
+            </div>
+          </div>
+
+        </p-fieldset>
+
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+
+        <p-fieldset [toggleable]="true">
+
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <span class="pi pi-user mr-2" [ngStyle]="{color: 'var(--purple-300)'}"></span>
+              <span class="font-bold text-lg" [ngStyle]="{color: 'var(--purple-300)'}">Ángel finaciero de
+                respaldo</span>
+            </div>
+          </ng-template>
+
+
+          <div class="grid">
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="nameRefTwo" placeholder="Escribe su nombre" id="user2"
+                pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('nameRefTwo')?.invalid && formRegisterReferences.get('nameRefTwo')?.touched }">
+              <label>Nombre completo</label>
+              <div
+                *ngIf="formRegisterReferences.get('nameRefTwo')?.invalid && (formRegisterReferences.get('nameRefTwo')?.dirty || formRegisterReferences.get('nameRefTwo')?.touched)">
+                <span *ngIf="formRegisterReferences.get('nameRefTwo')?.errors?.['required']">El campo de nombre es
+                  obligatorio.</span>
+                <span *ngIf="formRegisterReferences.get('nameRefTwo')?.errors?.['pattern']">El campo debe contener solo
+                  letras.</span>
+                <span *ngIf="formRegisterReferences.get('nameRefTwo')?.errors?.['minlength']">El nombre debe tener al
+                  menos 3
+                  caracteres.</span>
+              </div>
+            </div>
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="celphoneRefTwo" placeholder="Digita su número de celular" id="cell2"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="10" maxlength="15"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('celphoneRefTwo')?.invalid && formRegisterReferences.get('celphoneRefTwo')?.touched }">
+              <label>Teléfono móvil</label>
+
+              <div
+                *ngIf="formRegisterReferences.get('celphoneRefTwo')?.invalid && (formRegisterReferences.get('celphoneRefTwo')?.dirty || formRegisterReferences.get('celphoneRefTwo')?.touched)">
+                <span *ngIf="formRegisterReferences.get('celphoneRefTwo')?.errors?.['required']">El número de celular es
+                  obligatorio.</span>
+              </div>
+            </div>
+            <div class="col-4 inputbox">
+              <input type="text" formControlName="emailReference2" placeholder="Escribe su correo electrónico" id="mail2"
+                [ngClass]="{ 'invalid-input': formRegisterReferences.get('emailReference2')?.invalid && formRegisterReferences.get('emailReference2')?.touched }">
+              <label>E-mail</label>
+
+              <div
+                *ngIf="formRegisterReferences.get('emailReference2')?.invalid && (formRegisterReferences.get('email')?.dirty || formRegisterReferences.get('emailReference2')?.touched)">
+                <span *ngIf="formRegisterReferences.get('emailReference2')?.errors?.['required']">El
+                  correo electrónico es obligatorio.</span>
+                <span *ngIf="formRegisterReferences.get('emailReference2')?.errors?.['email']">El
+                  formato del correo electrónico no es válido.</span>
+              </div>
+            </div>
+          </div>
+
+
+        </p-fieldset>
+      </div>
+
+    </div>
+  </form>
+</section>
+
+<br>
+<div class="grid justify-content-center">
+  <div class="col">
+    <!-- <p-button label="Anterior" (onClick)="backPage()" icon="pi pi-angle-left" styleClass="p-button-help"
+      iconPos="left"></p-button> -->
+  </div>
+
+  <div class="col-fixed">
+    <p-button label="Siguiente" (onClick)="sendDataReferences()" icon="pi pi-angle-right" iconPos="right"
+      styleClass="p-button-help" [disabled]="formRegisterReferences.invalid">
+    </p-button>
+  </div>
+</div>

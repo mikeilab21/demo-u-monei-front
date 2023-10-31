@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<body [ngClass]="{'active': isClassEnabled}">
+  <div class="wrapper">
+    <div class="section">
+ <div class="top_navbar">
+   <div class="hamburger">
+    <button class="hamburger" id="hamburger-button" (click)="efectos()">
+      <i class="fas fa-bars"></i>
+    </button>
+   </div>
+   <img src="../../../../assets/layout/images/landing/u-cash-logo.png" height="80"/>
+ </div>
+ <div class="container">
+  <router-outlet></router-outlet>
+ </div>
+</div>
+     <div class="sidebar">
+         <div class="profile">
+             <img src="../../../../assets/layout/images/avatar4.png" alt="profile_picture">
+             <h3>Andrea Ciro</h3>
+             <p>Diseñadora</p>
+         </div>
+         <ul>
+             <li>
+                 <a routerLink="/home" class="active">
+                     <span class="icon"><i class="fas fa-home"></i></span>
+                     <span class="item">Landing</span>
+                 </a>
+             </li>
+             <li>
+                 <a routerLink="/dashboard/detalle-usuario">
+                     <span class="icon"><i class="fas fa-desktop"></i></span>
+                     <span class="item">Mi Dashboard</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-user-friends"></i></span>
+                     <span class="item">Usuarios</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                     <span class="item">Perfomance</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-database"></i></span>
+                     <span class="item">Desarrollador</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-chart-line"></i></span>
+                     <span class="item">Reportes</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-user-shield"></i></span>
+                     <span class="item">Administrar</span>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <span class="icon"><i class="fas fa-cog"></i></span>
+                     <span class="item">Configuración</span>
+                 </a>
+             </li>
+         </ul>
+     </div>
+
+ </div>
+</body>
+

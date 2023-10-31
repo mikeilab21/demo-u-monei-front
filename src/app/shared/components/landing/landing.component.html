@@ -1,0 +1,135 @@
+<div class="html">
+  <div class="body" id="top">
+    <header class="header" data-header>
+      <div class="container">
+        <a  href="#"><img src="../../../../assets/layout/images/landing/u-cash-logo.png" class="logo" /></a>
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list container">
+            <li>
+              <a routerLink="/login" class="navbar-link" data-nav-link>Acceso a clientes</a>
+            </li>
+            <li>
+              <a (click)="active = true" class="navbar-link" [ngClass]="{'active': active === true}"  data-nav-link>Acerca de U-Cash</a>
+            </li>
+            <li>
+              <a href="#" class="btn btn-primary">Inicio</a>
+            </li>
+          </ul>
+        </nav>
+
+        <button class="nav-toggle-btn" aria-label="toggle manu" data-nav-toggler>
+          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+      </div>
+    </header><br/>
+
+    <main>
+      <div *ngIf="active != true">
+        <app-main-landing></app-main-landing>
+      </div>
+      <br>
+      <div *ngIf="active == true">
+        <app-about></app-about>
+        <br>
+      </div>
+    </main>
+
+    <!--- #FOOTER-->
+    <footer class="footer">
+
+      <div class="section footer-top">
+        <div class="container">
+
+          <div class="footer-brand">
+
+            <a href="home" class="footer-list-title"> U-Monei </a>
+            <p class="section-text">
+              Es una fintech que conecta a profesionales y empresas
+            </p>
+
+            <ul class="social-list">
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.youtube.com/@U-monei" class="social-link">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-google"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Contactanos</p>
+            </li>
+
+            <li class="footer-item">
+              <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+
+              <a href="tel:+573157815414" class="item-link">+573157815414</a>
+            </li>
+
+            <li class="footer-item">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+              <a href="mailto:ucash.info@gmail.com" class="item-link">ucash.info@gmail.com</a>
+            </li>
+
+            <li class="footer-item">
+              <ion-icon name="map-outline" aria-hidden="true"></ion-icon>
+
+              <address class="item-link address">
+                calle 189 #10-40 <br>
+                Bogotá D.C
+              </address>
+            </li>
+          </ul>
+
+          <ul class="btn-list">
+            <p class="footer-list-title">Respaldo de: </p>
+            <li>
+              <a href="#" class="btn-item-link" aria-label="Download from app store">
+                <img src="../../../../assets/layout/images/landing/ilab.png" width="185" height="69" alt="app store"
+                  class="img">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="copyright">
+            &copy; {{ year }} Reservados todos los derechos <a href="#" class="copyright-link">@Ilab.digital</a>.
+          </p>
+        </div>
+      </div>
+
+    </footer>
+
+    <!--whatsapp-btn-->
+
+    <a href="https://wa.me/573125478996/?text=Hola%20u-monei%20necesito%20asistencia%20económica"  target="_blank">
+      <i class="btn-wsp pi pi-whatsapp"></i>
+    </a>
+
+  </div>
+</div>

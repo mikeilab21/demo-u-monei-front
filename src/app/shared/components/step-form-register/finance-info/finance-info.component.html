@@ -1,0 +1,135 @@
+<p-toast></p-toast>
+<br>
+<section>
+  <h1><b>Datos del contrato</b></h1>
+  <br>
+  <form [formGroup]="formRegisterFinance">
+    <div class="grid">
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="inputbox">
+          <input type="text" formControlName="nameEntity" placeholder="Ilab (ejemplo)" id="nameEntity"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('nameEntity')?.invalid && formRegisterFinance.get('nameEntity')?.touched }"
+            pattern="^[A-Za-z\s]+$">
+          <label>Nombre de entidad contratante</label>
+          <div
+            *ngIf="formRegisterFinance.get('nameEntity')?.invalid && (formRegisterFinance.get('nameEntity')?.dirty || formRegisterFinance.get('nameEntity')?.touched)">
+            <span *ngIf="formRegisterFinance.get('nameEntity')?.errors?.['required']">El nombre de la entidad
+              contratante es
+              obligatorio.</span>
+              <span *ngIf="formRegisterFinance.get('nameEntity')?.errors?.['pattern']">El campo debe contener solo letras.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- aca va codico dropdowm -->
+      <div class="col-12 md:col-6 lg:col-6">
+        <label class="p-label">Tipos de contrato</label>
+        <p-dropdown [options]="typesContract" formControlName="typeContract" placeholder="obra labor (ejemplo)" [editable]="false"
+          optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" filterPlaceholder="Buscar opción"
+          emptyFilterMessage="Sin resultados">
+        </p-dropdown>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="inputbox">
+          <input type="text" formControlName="contractPeriod" placeholder="12 meses (ejemplo)" id="contractPeriod"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('contractPeriod')?.invalid && formRegisterFinance.get('contractPeriod')?.touched }">
+          <label>Duración del contrato</label>
+          <div
+            *ngIf="formRegisterFinance.get('contractPeriod')?.invalid && (formRegisterFinance.get('contractPeriod')?.dirty || formRegisterFinance.get('contractPeriod')?.touched)">
+            <span *ngIf="formRegisterFinance.get('contractPeriod')?.errors?.['required']">La duración del contrato es
+              obligatorio.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <label class="p-label">Valor total del contrato. COP</label>
+        <div class="p-fluid">
+          <p-inputNumber mode="currency" formControlName="fullContractValue" inputId="currency-fullContractValue"
+            currency="COP" currencyDisplay="code" locale="es-CO" [minFractionDigits]="0"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('totalAssets')?.invalid && formRegisterFinance.get('fullContractValue')?.touched }">
+          </p-inputNumber>
+        </div>
+        <div
+          *ngIf="formRegisterFinance.get('fullContractValue')?.invalid && (formRegisterFinance.get('fullContractValue')?.dirty || formRegisterFinance.get('fullContractValue')?.touched)">
+          <span *ngIf="formRegisterFinance.get('fullContractValue')?.errors?.['required']">El valor del contrato es
+            obligatorio.</span>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="inputbox">
+          <input type="text" formControlName="contractSupervisorName" placeholder="Escribe el nombre del supervisor"
+            id="company" pattern="^[A-Za-z\s]+$" minlength="3" maxlength="60"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('contractSupervisorName')?.invalid && formRegisterFinance.get('contractSupervisorName')?.touched }">
+          <label>Nombre completo del supervisor</label>
+          <div
+            *ngIf="formRegisterFinance.get('contractSupervisorName')?.invalid && (formRegisterFinance.get('contractSupervisorName')?.dirty || formRegisterFinance.get('contractSupervisorName')?.touched)">
+            <span *ngIf="formRegisterFinance.get('contractSupervisorName')?.errors?.['required']">El campo de nombre de
+              supervisor
+              es
+              obligatorio.</span>
+            <span *ngIf="formRegisterFinance.get('contractSupervisorName')?.errors?.['pattern']">El campo debe contener
+              solo
+              letras.</span>
+            <span *ngIf="formRegisterFinance.get('contractSupervisorName')?.errors?.['minlength']">El nombre debe tener
+              al
+              menos 3
+              caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="inputbox">
+          <input type="text" formControlName="contractSupervisorPhoneNumber" placeholder="Digita tu número de celular"
+            id="cell" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" minlength="10" maxlength="15"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('contractSupervisorPhoneNumber')?.invalid && formRegisterFinance.get('contractSupervisorPhoneNumber')?.touched }">
+          <label>Número de teléfono móvil</label>
+          <div
+            *ngIf="formRegisterFinance.get('contractSupervisorPhoneNumber')?.invalid && (formRegisterFinance.get('contractSupervisorPhoneNumber')?.dirty || formRegisterFinance.get('contractSupervisorPhoneNumber')?.touched)">
+            <span *ngIf="formRegisterFinance.get('contractSupervisorPhoneNumber')?.errors?.['required']">El número de
+              celular es
+              obligatorio.</span>
+            <span *ngIf="formRegisterFinance.get('contractSupervisorPhoneNumber')?.errors?.['minlength']">El número debe
+              tener al menos 10 caracteres.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="inputbox">
+          <input type="text" formControlName="contractSupervisorEmail" placeholder="Escribe tu correo electrónico" pInputText
+            id="correo1"
+            [ngClass]="{ 'invalid-input': formRegisterFinance.get('contractSupervisorEmail')?.invalid && formRegisterFinance.get('contractSupervisorEmail')?.touched }">
+          <label>Email</label>
+          <div
+            *ngIf="formRegisterFinance.get('contractSupervisorEmail')?.invalid && (formRegisterFinance.get('contractSupervisorEmail')?.dirty || formRegisterFinance.get('contractSupervisorEmail')?.touched)">
+            <span *ngIf="formRegisterFinance.get('contractSupervisorEmail')?.errors?.['required']">El
+              correo electrónico es obligatorio.</span>
+            <span *ngIf="formRegisterFinance.get('contractSupervisorEmail')?.errors?.['email']">El
+              formato del correo electrónico no es válido.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<br>
+<div class="grid justify-content-center">
+  <div class="col">
+    <!-- <p-button label="Anterior" (onClick)="backPage()" icon="pi pi-angle-left" styleClass="p-button-help"
+      iconPos="left"></p-button> -->
+  </div>
+
+  <div class="col-fixed">
+    <p-button label="Siguiente" (onClick)="sendDataContract()" icon="pi pi-angle-right" iconPos="right"
+      styleClass="p-button-help" [disabled]="formRegisterFinance.invalid">
+    </p-button>
+  </div>
+</div>

@@ -1,0 +1,210 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+@import "prismjs/themes/prism-coy.css";
+@import "quill/dist/quill.snow.css";
+
+@media screen and (max-width: 575px ) {
+  .xsm\:col {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 0.5rem;
+  }
+  .xsm\:col-12 {
+   flex: 0 0 auto;
+   padding: 0.5rem;
+   width: 100%;
+ }
+ }
+
+ .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: var(--russian-violet);
+  border-color: #dee2e6;
+  color: white;
+  /* color: black;
+  background: rgb(0, 229, 194); */
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 28px;
+}
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  font-weight: 600;
+  border-radius: 3px;
+  font-size: 22px;
+  transition: box-shadow 0.2s;
+}
+ /* .p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link {
+  border-color: #dee2e6!important;
+  background: var(--russian-violet)!important;
+  color: white!important;
+} */
+
+.estilo-lista li{
+  list-style: decimal!important;
+  margin-left: 1.5rem!important;
+  padding: 0.5rem;
+  font-size: 20px;
+}
+
+.p-menubar {
+  padding: 0.5rem;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  z-index: auto;
+  position: relative;
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+  background: transparent;
+  transition: box-shadow 0.2s;
+  border-radius: 3px;
+  background: #ffffff;
+}
+.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+  color: #ffffff;
+  border: 1px solid #e9ecef;
+  background: rgb(122, 43, 247);;
+  min-width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.143rem;
+  z-index: 1;
+  border-radius: 50%;
+}
+.p-steps .p-steps-item .p-menuitem-link .p-steps-title {
+  margin-top: 0.5rem;
+  color: #312b2b;
+}
+.p-steps .p-steps-item .p-menuitem-link:not(.p-disabled):focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem #a6d5fa;
+}
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+  background: #76f7e5;
+  color: #ffffff;
+}
+.p-steps .p-steps-item.p-highlight .p-steps-title {
+  font-weight: 600;
+  color: #495057;
+}
+.p-steps .p-steps-item:before {
+  content: " ";
+  border-top: 1px solid #dee2e6;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  display: block;
+  position: absolute;
+  margin-top: -1rem;
+}
+
+
+.p-dropdown {
+  width: 90%;
+  height: 43px;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgb(122, 43, 247);
+  outline: none;
+  border-radius: 0px;
+}
+
+.p-dropdown .p-dropdown-label{
+  height: 40px;
+  position: relative;
+  padding: 5px;
+  margin-top: 1px;
+}
+.p-dropdown .p-dropdown-label.p-placeholder{
+  font-size: 17px;
+  font-family: byom, sans-serif;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.1rem transparent;
+  border-color: #2196F3;
+}
+
+hr{
+  border: 0.5px solid rgb(0 229 194 / 24%);
+}
+
+.p-inputtext {
+  width: 90%;
+  height: 43px;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgb(122, 43, 247);
+  outline: none;
+  border-radius: 0px;
+}
+.p-inputtext:enabled:hover {
+  border-color: #2196F3;
+}
+.p-inputtext:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.1rem transparent;
+  border-color: #2196F3;
+}
+
+.p-fluid{
+  width: 90%;
+}
+
+
+.p-fileupload-choose:not(.p-disabled):hover {
+  background: rgb(122, 43, 247);
+  color: #ffffff;
+  border-color: rgb(122, 43, 247);
+}
+.p-fileupload-choose:not(.p-disabled):active {
+  background: rgb(122, 43, 247);
+  color: #ffffff;
+  border-color: rgb(122, 43, 247);
+}
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+.col-offset-4-center{
+  margin-left: 33.3333% !important;
+  text-align: center;
+}
+
+.p-rating-icon{
+  margin-right: 15px;
+}
+
+.p-tag {
+  background: #4f5255;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.4rem;
+  border-radius: 3px;
+}
+
+.p-rating .p-rating-icon.pi-star-fill {
+  color: #9C27B0;
+}
+
+.p-rating .p-rating-icon {
+  color: rgb(122, 43, 247);
+  font-size: 1.5rem;
+}
+
+.p-rating-icon:hover {
+  color: rgb(122, 43, 247);
+}

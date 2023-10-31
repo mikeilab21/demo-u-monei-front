@@ -1,0 +1,136 @@
+<p-toast></p-toast>
+<div class="html">
+  <div class="body" id="top">
+    <p-menubar>
+      <ng-template pTemplate="start">
+        <a href="#"><img src="../../../../assets/layout/images/landing/u-cash-logo.png" class="logo" /></a>
+      </ng-template>
+    </p-menubar>
+
+
+    <main>
+
+      <section class="section features" id="features" aria-label="features">
+        <div class="grid container">
+          <div class="col-6 xsm:col-12 sm:col-12 md:col-6 lg:col-6">
+            <div class="p-fluid">
+              <br>
+              <figure class="about-banner">
+                <img src="../../../../assets/layout/images/scompletada.png" loading="lazy" alt="confirmation"
+                  class="baneer-wh">
+              </figure>
+            </div>
+          </div>
+
+
+          <div class="col-6 xsm:col-12 sm:col-12 md:col-6 lg:col-6">
+            <br>
+            <h1 class="section-title">¡Solicitud Completada!</h1>
+            <p class="section-subtitle">Tu solicitud de alivio económico ha finalizado con éxito.</p>
+            <div class="grid card24h">
+              <div class="col-4 flex align-items-center justify-content-center">
+                <div class="p-fluid">
+                  <figure>
+                    <img src="../../../../assets/layout/images/24h.png" loading="lazy" alt="24h" class="w-100">
+                  </figure>
+                </div>
+
+              </div>
+
+              <div class="col-1">
+                <p-divider layout="vertical">
+                </p-divider>
+              </div>
+              <div class="col-7 flex align-items-center justify-content-center">
+                <p class="p-24">{{text24}}</p>
+              </div>
+
+            </div>
+            <div class="rating-card" *ngIf="thankyou === false">
+              <p><small>*</small><b>¿Cómo fue tu experiencia con la solicitud de alivio económico?</b></p>
+              <p>Tu opinión nos ayuda a mejorar </p>
+              <div class="rating flex justify-content-center">
+                <p-rating [(ngModel)]="ratingValue" [stars]="5" (ngModelChange)="onRatingChange($event)"
+                  [cancel]="false"></p-rating>
+              </div>
+              <button type="button" class="btn-send" (click)="send()">
+                Enviar
+              </button>
+            </div>
+            <div class="rating-card" *ngIf="thankyou">
+              <div class="flex justify-content-center">
+                <figure>
+                  <img src="../../../../assets/layout/images/message.png" width="64" height="64" loading="lazy"
+                    alt="thanks" class="w-100">
+                </figure>
+              </div>
+
+              <h1 class="section-title"><b>¡Gracias!</b></h1>
+              <p class="section-subtitle">Tu opinión nos ayuda a mejorar.</p>
+              <p class="section-subtitle">En tan soló 24 horas hábiles recibirás una respuesta a través del correo
+                electrónico registrado.</p>
+
+            </div>
+          </div>
+
+          <div class="col-12 xsm:col-12 sm:col-12 md:col-12 lg:col-12 justify-content-center">
+            <div class="rating-card">
+              <h1 class="section-title">¿En qué podemos ayudarte?</h1>
+              <p class="section-subtitle">Nuestro equipo U-monei está listo para solucionar tus dudas.</p>
+            </div>
+          </div>
+
+          <div class="grid p-fluid">
+            <div class="lg:col-4 sm:col-12 col-offset-2">
+              <div class="cardChat">
+                <div class="flex justify-content-center">
+                  <figure>
+                    <img src="../../../../assets/layout/images/wsp3.png" loading="lazy" alt="wsp" class="w-100">
+                  </figure>
+                </div>
+                <h1 class="section-title"><b>Whatsapp</b></h1>
+                <p class="section-subtitle">Puedes escribirnos de lunes a viernes de 8am a 6pm.</p>
+                <a class="btn-chat"
+                  href="https://wa.me/573125478996/?text=Hola%20u-monei%20necesito%20asistencia%20económica"
+                  target="_blank">
+                  Hablemos
+                </a>
+              </div>
+            </div>
+
+              <div class="lg:col-4 sm:col-12 col-offset-2">
+                <div class="cardMail">
+                  <div class="flex justify-content-center">
+                    <figure>
+                      <img src="../../../../assets/layout/images/msgLike.png" loading="lazy" alt="chatmail" class="w-100">
+                    </figure>
+                  </div>
+                  <h1 class="section-title"><b>Correo electrónico</b></h1>
+                  <p class="section-subtitle">Escríbenos y pronto te responderemos</p>
+                  <a class="btn-chat"
+                    href="mailto:somos@umonei.com?subject=Hola%20U-monei%2C%20necesito%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20alivio%20economico">
+                    Escríbenos
+                  </a>
+                </div>
+              </div>
+
+          </div>
+
+          <div class="rating-card">
+
+          </div>
+        </div>
+      </section>
+
+      <p class="copyright">
+        &copy; {{ year }} Reservados todos los derechos <a href="#" class="copyright-link">@Ilab.digital</a>.
+      </p>
+    </main>
+
+    <!--whatsapp-btn-->
+
+    <a href="https://wa.me/573125478996/?text=Hola%20u-monei%20necesito%20asistencia%20económica" target="_blank">
+      <i class="btn-wsp pi pi-whatsapp"></i>
+    </a>
+  </div>
+</div>

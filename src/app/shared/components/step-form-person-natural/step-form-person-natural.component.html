@@ -1,0 +1,32 @@
+<p-toast></p-toast>
+<div class="html">
+  <div class="body" id="top2">
+    <p-menubar>
+      <ng-template pTemplate="start">
+        <a href="#"><img src="../../../../assets/layout/images/landing/u-cash-logo.png" class="logo" /></a>
+      </ng-template>
+      <ng-template pTemplate="end">
+        <a href="#" class="btn btn-primary">
+          <i class="pi pi-user"></i>
+          Perfil
+        </a>
+      </ng-template>
+    </p-menubar>
+    <!-- Stepper -->
+
+    <main>
+      <section class="section features" id="features" aria-label="features">
+        <p class="section-subtitle">Solicitud con U-monei</p>
+        <h4 class="section-title">¡Estas muy cerca de lograrlo!</h4>
+        <div class="container">
+            <p-steps [model]="itemsStepPersonal" [readonly]="true"></p-steps>
+          <br>
+          <div class="card flex justify-content-center">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+

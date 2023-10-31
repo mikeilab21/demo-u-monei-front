@@ -1,0 +1,317 @@
+<br>
+<div class="body">
+  <form [formGroup]="formValidCredit">
+    <section style="width: 100%;">
+      <h1><b>Confirmación de solicitud de credito</b></h1>
+      <br>
+
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+          <label htmlFor="plan">Plan elegido</label>
+          <input pInputText formControlName="chosenPlan" placeholder="Plan 60 dias" id="plan">
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <label htmlFor="forma">Forma de pago</label>
+          <input pInputText formControlName="paymentMethod" placeholder="Cuotas iguales" id="forma">
+        </div>
+
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <label class="p-label">Valor del contrato que tienes firmado</label>
+          <div class="p-fluid">
+            <p-inputNumber mode="currency" formControlName="amount" inputId="valor-contrato" currency="COP"
+              currencyDisplay="code" locale="es-CO" [minFractionDigits]="0">
+            </p-inputNumber>
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+          <label class="p-label">Duración del contrato en meses</label>
+          <div class="p-fluid">
+            <p-inputNumber mode="decimal" formControlName="monthContract" inputId="meses-contrato"
+              [minFractionDigits]="0">
+            </p-inputNumber>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="grid">
+      <div class="col-12 xsm:col-12 sm:col-12 md:col-12 lg:col-12">
+        <div class="form-box">
+          <div class="flex">
+            <div class="flex-none flex align-items-center justify-content-center letterColor">
+              <label>
+                Valor mínimo
+              </label>
+            </div>
+            <div class="flex-grow-1 flex align-items-center justify-content-center range-container letterColorLabel">
+              <label>
+                Ingresa el valor que requieres para tu apoyo financiero
+              </label>
+            </div>
+            <div class="flex-none flex align-items-center justify-content-center letterColor">
+              <label>
+                Valor máximo
+              </label>
+            </div>
+          </div>
+
+          <div class="flex-1 flex align-items-center justify-content-center range-container">
+            <small class="letterColor">$500,000</small>
+            <input required type="range" [max]="montoMaxim" min="500000" step="100000"
+              (ngModelChange)="updateContractvalue()" [ngModelOptions]="{ standalone: true }" [(ngModel)]="prueba">
+            <small class="letterColor">{{ montoMaxim | currency: "$" }}</small>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-12 lg:col-12" style="margin-left: 25px;">
+      <label class="p-label-r">Valor requerido</label>
+      <div class="p-fluid">
+        <p-inputNumber mode="currency" formControlName="requiredAmount" inputId="valor-requerido" currency="COP"
+          currencyDisplay="code" locale="es-CO" [minFractionDigits]="0">
+        </p-inputNumber>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<section style="width: 100%;">
+  <br>
+
+  <div class="grid">
+    <div class="col-12 xsm:col-12 sm:col-12 md:col-12 lg:col-12 back-pay">
+      <div class="grid">
+        <div class="col-4 col-offset-4-center">
+          <h2 class="h2-pagos">Valores a pagar</h2>
+        </div>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor a financiar
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{prueba | currency : "$"}}
+        </div>
+        <div class="col-4">
+          Interés crédito (42% E.A)
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ creditInterest | currency: "$"}}
+        </div>
+        <div class="col-4">
+          Intermediación
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ intermediation | currency: "$" }}
+        </div>
+        <div class="col-4">
+          Administración
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ administration | currency: "$" }}
+        </div>
+        <div class="col-4">
+          IVA (administración)
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ ivaAdministration | currency: "$" }}
+        </div>
+      </div>
+      <div>
+        <br>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor cuota
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ quotaValue | currency: "$" }}
+        </div>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor a desembolsar
+        </div>
+        <div class="col-4 col-offset-4-center">
+          {{ disbursementeValue | currency: "$" }}
+        </div>
+      </div>
+      <div>
+        <br>
+      </div>
+
+      <!-- Plan Intereses y Valor total -->
+      <div class="flex" *ngIf="selectedPaymentOption === 'InterestValue'">
+        <div class="col-12">
+          <div class="col-12">
+            <b>Cuotas</b>
+          </div>
+          <div class="grid content" *ngIf="planLoan === '30days'">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPayment | currency: "$" }}
+            </div>
+          </div>
+
+
+          <div class="grid content" *ngIf="planLoan === '60days'">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 60 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ thirdPayment | currency: "$" }}
+            </div>
+          </div>
+
+          <div class="grid content" *ngIf="planLoan === '90days'">
+
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Tercera cuota - 60 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ thirdPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 90 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ fourthPayment | currency: "$" }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Plan Cuotas Iguales -->
+      <div class="flex" *ngIf="selectedPaymentOption === 'SimilarOdds'">
+        <div class="col-12">
+          <div class="col-12">
+            <b>Cuotas</b>
+          </div>
+          <div class="grid content" *ngIf="planLoan === '30days'">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+
+          <div class="grid content" *ngIf="planLoan === '60days'">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 60 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ thirdPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+          <div class="grid content" *ngIf="planLoan === '90days'">
+
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Tercera cuota - 60 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ thirdPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 90 días
+            </div>
+            <div class="col-4 col-offset-4-center">
+              {{ fourthPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<br>
+<div class="grid justify-content-center">
+  <div class="col">
+    <!-- <p-button label="Anterior" (onClick)="btnAnterior()" icon="pi pi-angle-left" styleClass="p-button-help"
+      iconPos="left"></p-button> -->
+  </div>
+
+  <div class="col-fixed">
+    <p-button label="Confirmar solicitud" (onClick)="send()" icon="pi pi-angle-right" iconPos="right"
+      styleClass="p-button-help" [disabled]="this.prueba < 500000">
+    </p-button>
+  </div>
+</div>

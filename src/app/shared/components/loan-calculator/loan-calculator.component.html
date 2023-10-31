@@ -1,0 +1,544 @@
+<p-toast></p-toast>
+<div class="body">
+  <div class="surface-section px-6 py-2 md:px-4 lg:px-8">
+    <div class="flex align-items-start flex-column lg:justify-content-end lg:flex-row">
+      <div class="mt-3 lg:mt-0">
+        <p-button (onClick)="btnAnterior()" icon="pi pi-times"
+          styleClass="p-button-rounded p-button-danger p-button-text p-button-raised"></p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid container">
+    <div class="col-6 xsm:col-12 sm:col-12 md:col-6 lg:col-6">
+      <div class="form-box">
+
+        <h2>Simulador de alivio financiero</h2>
+        <p>Para personas naturales apoyamos máximo $5.000.000 y empresas $20.000.000</p>
+
+        <form [formGroup]="formLoan" (ngSubmit)="send()">
+
+          <div class="flex flex-wrap gap-6 justify-content-center">
+            <div class="flex align-items-center letterColor">
+              <p-radioButton name="userType" value="Natural" label="Persona Natural"
+                [ngModelOptions]="{ standalone: true }" [(ngModel)]="userType" inputId="optNatural"></p-radioButton>
+            </div>
+            <div class="flex align-items-center letterColor">
+              <p-radioButton name="userType" value="Company" label="Empresa" [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="userType" inputId="optCompany"></p-radioButton>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="flex">
+            <div class="flex-grow-1 flex align-items-center justify-content-center range-container letterColorLabel">
+              <label style="color: floralwhite">
+                ¿Tienes un contrato vigente con una entidad pública o privada para respaldar tu asistencia económica?
+              </label>
+            </div>
+          </div>
+
+          <br>
+          <div class="flex flex-wrap gap-6 justify-content-center">
+            <div class="flex align-items-center  letterColor">
+              <p-radioButton name="contractStatus" value="yes" label="Sí tengo" [ngModelOptions]="{standalone:true}"
+                [(ngModel)]="contractStatus" (onClick)="onContractStatusChange()" inputId="opt5">
+              </p-radioButton>
+            </div>
+            <div class="flex align-items-center letterColor">
+              <p-radioButton name="contractStatus" value="no" label="No tengo" [ngModelOptions]="{standalone:true}"
+                [(ngModel)]="contractStatus" (onClick)="onContractStatusChange()" inputId="opt4">
+              </p-radioButton>
+            </div>
+          </div>
+          <br>
+          <div *ngIf="contractStatus === 'no'" class="message-container">
+            <p class="error-message">Lo sentimos, por ahora no podemos generar un apoyo económico para ti, debes tener
+              un contrato vigente con fecha mayor a 30 días posterior a la fecha de desembolso</p>
+          </div>
+
+          <br><br>
+
+
+            <div class="inputbox p-input-icon-right" *ngIf="contractStatus === 'yes'">
+              <i class="pi pi-info-circle" pTooltip="{{textInfo}}" tooltipPosition="top"></i>
+              <input type="text" formControlName="amount" [minlength]="7" [maxlength]="9"
+                [value]="moneyRequired | currency : '$'"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+                placeholder="{{ dataService.montoCliente | currency : '$' }}">
+              <label style="font-size: 17px; color: white; padding-bottom: 50px;">
+                Ingresa el valor del contrato que tienes firmado
+              </label>
+            </div>
+            <br><br>
+
+            <div class="inputbox p-input-icon-right align-items-center" *ngIf="contractStatus === 'yes'">
+              <i class="pi pi-info-circle" pTooltip="{{textMeses}}" tooltipPosition="top"></i>
+              <input type="text" formControlName="monthContract" [minlength]="1" [maxlength]="3"
+                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" placeholder="12">
+              <label style="font-size: 17px; color: white; padding-bottom: 50px;">
+                ¿Cuántos meses tiene de duración el contrato?
+              </label>
+            </div>
+            <br>
+
+          <br>
+
+          <div class="titleRadioBtn" *ngIf="contractStatus === 'yes'">
+            <p>Elige el plan que mejor se ajuste a tu necesidad</p>
+          </div>
+
+          <div class="flex" *ngIf="contractStatus === 'yes'">
+            <div class="flex-1 flex align-items-center justify-content-center letterColor">
+              <p-radioButton name="dias" value="30days" label="Plan 30 días" [ngModelOptions]="{standalone:true}"
+                [(ngModel)]="planLoan" (onClick)="calculatorDayPlan()" inputId="opt1"></p-radioButton>
+              <i class="pi pi-info-circle option-info" pTooltip="{{textP30}}" tooltipPosition="top"></i>
+            </div>
+            <div class="flex-1 flex align-items-center justify-content-center letterColor">
+              <p-radioButton name="dias" value="60days" label="Plan 60 días" [ngModelOptions]="{standalone:true}"
+                [(ngModel)]="planLoan" (onClick)="calculatorDayPlan()" inputId="opt2"></p-radioButton>
+              <i class="pi pi-info-circle option-info" pTooltip="{{textP60}}" tooltipPosition="top"></i>
+            </div>
+            <div class="flex-1 flex align-items-center justify-content-center letterColor">
+              <p-radioButton name="dias" value="90days" label="Plan 90 días" [ngModelOptions]="{standalone:true}"
+                [(ngModel)]="planLoan" (onClick)="calculatorDayPlan()" inputId="opt3"></p-radioButton>
+              <i class="pi pi-info-circle option-info" pTooltip="{{textP90}}" tooltipPosition="top"></i>
+            </div>
+          </div>
+          <br><br>
+
+          <div class="titleRadioBtn" *ngIf="contractStatus === 'yes'">
+            <p>Elige la forma en la que deseas pagar</p>
+          </div>
+
+          <!-- Formas de pago -->
+          <div class="flex" *ngIf="contractStatus === 'yes'">
+            <div class="flex-1 flex align-items-center justify-content-center letterColor">
+              <p-radioButton name="selectedPaymentOption" value="InterestValue" label="Intereses y Valor Completo"
+                [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedPaymentOption" (onClick)="calculatorDayPlan()"
+                inputId="interest"></p-radioButton>
+              <i class="pi pi-info-circle option-info" pTooltip="{{textIntFullPay}}" tooltipPosition="top"></i>
+            </div>
+            <div class="flex-1 flex align-items-center justify-content-center letterColor">
+              <p-radioButton name="selectedPaymentOption" value="SimilarOdds" label="Cuotas Iguales"
+                [ngModelOptions]="{standalone:true}" [(ngModel)]="selectedPaymentOption" (onClick)="calculatorDayPlan()"
+                [disabled]="planLoan === '30days'" inputId="similar"></p-radioButton>
+              <i class="pi pi-info-circle option-info" pTooltip="{{textSimOdds}}" tooltipPosition="top"></i>
+            </div>
+          </div>
+          <br><br>
+
+
+          <div class="flex" *ngIf="contractStatus === 'yes'">
+            <div class="flex-none flex align-items-center justify-content-center letterColor">
+              <label>
+                Valor mínimo
+              </label>
+            </div>
+            <div class="flex-grow-1 flex align-items-center justify-content-center range-container letterColorLabel">
+              <label style="color: floralwhite">
+                Ingresa el valor que requieres para tu apoyo financiero
+              </label>
+            </div>
+            <div class="flex-none flex align-items-center justify-content-center letterColor">
+              <label>
+                Valor máximo
+              </label>
+            </div>
+          </div>
+
+          <div class="flex-1 flex align-items-center justify-content-center range-container letterColor"
+            *ngIf="contractStatus === 'yes'">
+            <span class="letterColor">$500,000</span>
+            <input required type="range" [max]="montoMaxim" min="500000" step="100000"
+              (ngModelChange)="updateContractvalue()" [ngModelOptions]="{ standalone: true }" [(ngModel)]="prueba">
+            <span class="letterColor">{{ montoMaxim | currency: "$" }}</span>
+          </div>
+
+          <div class="inputbox p-input-icon-right" *ngIf="contractStatus === 'yes'">
+            <input type="text" [minlength]="7" required="required" [value]="montoMaxim | currency : '$'"
+              formControlName="contractAmount" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)"
+              [maxlength]="8" placeholder="{{ contract | currency: '$'}}">
+            <label style="font-size: 17px; color: white;">
+              Valor requerido
+            </label>
+          </div>
+
+          <button type="submit" class="btn-simulator" [disabled]="isSubmitDisabled"
+            [ngClass]="{ 'btn-disabled': isSubmitDisabled }" *ngIf="contractStatus === 'yes'">
+            ¡Solicita tu alivio!
+          </button>
+
+          <p-dialog [(visible)]="visible" [style]="{width: '50vw'}" [modal]="true">
+            <div class="flex-grow-1 flex align-items-center justify-content-center range-container letterColorLabel">
+              <i class="pi pi-users" style="font-size: 2rem;"></i>
+            </div>
+            <div class="flex">
+              <div class="flex-grow-1 flex align-items-center justify-content-center range-container letterColorLabel">
+                <label style="font-size: 17px;">
+                  ¿Qué tipo de cliente eres?
+                </label>
+              </div>
+            </div>
+            <br>
+            <div class="flex flex-wrap gap-6 justify-content-center">
+              <div class="align-items-center">
+                <p-radioButton name="typeClient" value="natural" label="Persona Natural"
+                  [ngModelOptions]="{ standalone: true }" [(ngModel)]="typeClient" inputId="optNatural"></p-radioButton>
+              </div>
+              <div class="align-items-center">
+                <p-radioButton name="typeClient" value="juridica" label="Empresa"
+                  [ngModelOptions]="{ standalone: true }" [(ngModel)]="typeClient" inputId="optCompany"></p-radioButton>
+              </div>
+            </div>
+
+            <br>
+
+
+            <ng-template pTemplate="footer">
+              <p-button icon="pi pi-check" (click)="showPopup()" label="Continuar"
+                styleClass="p-button-help"></p-button>
+            </ng-template>
+          </p-dialog>
+
+
+        </form>
+      </div>
+    </div>
+
+    <div class="col-6 xsm:col-12 sm:col-12 md:col-6 lg:col-6 back-pay">
+      <div class="grid">
+        <div class="col-7 col-offset-3">
+          <h2 class="h2-pagos">Valores a pagar</h2>
+        </div>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor a financiar
+        </div>
+        <div class="col-4 col-offset-4">
+          {{prueba | currency : "$"}}
+        </div>
+        <div class="col-4">
+          Interés Crédito (42% E.A)
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ creditInterest | currency: "$"}}
+          <i class="pi pi-info-circle" pTooltip="{{textCredict}}" tooltipPosition="top"></i>
+        </div>
+        <div class="col-4">
+          Intermediación
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ intermediation | currency: "$" }}
+          <i class="pi pi-info-circle" pTooltip="{{textInter}}" tooltipPosition="top"></i>
+        </div>
+        <div class="col-4">
+          Administración
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ administration | currency: "$" }}
+          <i class="pi pi-info-circle" pTooltip="{{textAdmin}}" tooltipPosition="top"></i>
+        </div>
+        <div class="col-4">
+          IVA (administración)
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ ivaAdministration | currency: "$" }}
+          <i class="pi pi-info-circle" pTooltip="{{textIvaAdmin}}" tooltipPosition="top"></i>
+        </div>
+      </div>
+      <div>
+        <br>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor cuota
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ quotaValue | currency: "$" }}
+        </div>
+      </div>
+      <div class="grid content">
+        <div class="col-4">
+          Valor a desembolsar
+        </div>
+        <div class="col-4 col-offset-4">
+          {{ disbursementeValue | currency: "$" }}
+          <i class="pi pi-info-circle" pTooltip="{{textDisbursement}}" tooltipPosition="top"></i>
+        </div>
+      </div>
+      <div>
+        <br>
+      </div>
+
+      <!-- Plan Intereses y Valor total -->
+      <div class="flex" *ngIf="selectedPaymentOption === 'InterestValue'">
+        <div class="col-12">
+          <div class="col-12">
+            <b>Cuotas</b>
+          </div>
+          <div class="grid content" *ngIf="plan1">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPayment | currency: "$" }}
+            </div>
+          </div>
+
+
+          <div class="grid content" *ngIf="plan2">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 60 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ thirdPayment | currency: "$" }}
+            </div>
+          </div>
+
+          <div class="grid content" *ngIf="plan3">
+
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Tercera cuota - 60 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ thirdPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 90 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ fourthPayment | currency: "$" }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Plan Cuotas Iguales -->
+      <div class="flex" *ngIf="selectedPaymentOption === 'SimilarOdds'">
+        <div class="col-12">
+          <div class="col-12">
+            <b>Cuotas</b>
+          </div>
+          <div class="grid content" *ngIf="plan1">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+
+          <div class="grid content" *ngIf="plan2">
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 60 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ thirdPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+          <div class="grid content" *ngIf="plan3">
+
+            <div class="col-4">
+              Primera cuota - Pago anticipado
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ firstPayment | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Segunda cuota - 30 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ secondPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Tercera cuota - 60 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ thirdPaymentOdds | currency: "$" }}
+            </div>
+            <div class="col-4">
+              Pago total del crédito - 90 días
+            </div>
+            <div class="col-4 col-offset-4">
+              {{ fourthPaymentOdds | currency: "$" }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="visibleOpt2" [style]="{width: '50vw'}" [modal]="true">
+
+  <div class="grid">
+    <div class="align-items-center justify-content-center">
+      <div *ngIf="enableOptClientEmp == true">
+        <div style="text-align: center;">
+          <h1><strong>Empresas</strong></h1>
+          <em>Documentos</em>
+
+          <p><strong>PREPARA LOS SIGUIENTES DOCUMENTOS PARA TU SOLICITUD</strong></p>
+        </div>
+
+
+        <h3><strong>Información del Representante Legal:</strong></h3>
+        <p>Detalles pertinentes sobre el representante legal de tu empresa.</p>
+
+        <h3><strong>Composición Accionaria Detallada:</strong></h3>
+        <p>Información completa sobre la composición accionaria de tu empresa.</p>
+
+        <h3><strong>Soporte de Pago Contractual:</strong></h3>
+        <p>Comprobante de pago de una parte del contrato o el soporte mensual de pago emitido por la entidad
+          correspondiente.</p>
+
+        <h3><strong>Política de Cumplimiento del Contrato:</strong></h3>
+        <p>Documentación que respalde el pago de la póliza de cumplimiento del contrato.</p>
+
+        <h3><strong>Certificación Bancaria:</strong></h3>
+        <p>Certificación bancaria actualizada menor a 30 días calendario.</p>
+
+        <h3><strong>Referencias Personales (Ángeles de Apoyo):</strong></h3>
+        <p>Datos de dos referencias personales que puedan servir como ángeles de apoyo en el proceso.</p>
+
+        <h3><strong>Datos del Pagador del Contrato:</strong></h3>
+        <p>Información necesaria para confirmar el contrato.</p>
+
+        <h3><strong>Datos del Supervisor o Jefe Directo:</strong></h3>
+        <p>Información del supervisor o jefe directo que pueda confirmar la ejecución del contrato sin
+          problemas.</p>
+
+        <h3><strong>Copia de Recibo Público de Residencia:</strong></h3>
+        <p>Una copia de un recibo público que respalde tu lugar de residencia.</p>
+
+        <h3><strong>RUT (Registro Único Tributario):</strong></h3>
+        <p>Proporciona el RUT actualizado de tu empresa, con una vigencia no superior a 30 días.</p>
+
+        <p>Nuestro principal objetivo es asegurar tu seguridad, por ello, verificaremos tu identidad y la
+          veracidad de la información, si cumples con todos los requisitos podrás disfrutar de tu alivio
+          económico.</p>
+
+        <em><strong>Te podremos solicitar documentos adicionales en casos específicos o según la composición de
+            tu empresa.</strong></em>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="enableOptClient == true">
+    <div style="text-align: center;">
+      <h1><strong>Persona Natural</strong></h1>
+      <em>Documentos</em>
+
+      <p><strong>PREPARA LOS SIGUIENTES DOCUMENTOS PARA TU SOLICITUD</strong></p>
+    </div>
+
+    <h3><strong>Información Personal del Solicitante:</strong></h3>
+    <p>Por favor, proporciona la información necesaria sobre la persona que presentará la solicitud de alivio económico.
+    </p>
+
+    <h3><strong>Soporte de Pago Contractual:</strong></h3>
+    <p>Comprobante de pago de una parte del contrato o el soporte mensual de pago emitido por la entidad
+      correspondiente.</p>
+
+    <h3><strong>Política de Cumplimiento del Contrato:</strong></h3>
+    <p>Documentación que respalde el pago de la póliza de cumplimiento del contrato.</p>
+
+    <h3><strong>Certificación Bancaria:</strong></h3>
+    <p>Certificación bancaria actualizada menor a 30 días calendario.</p>
+
+    <h3><strong>Referencias Personales (Ángeles de Apoyo):</strong></h3>
+    <p>Datos de dos referencias personales que puedan servir como ángeles de apoyo en el proceso.</p>
+
+    <h3><strong>Datos del Pagador del Contrato:</strong></h3>
+    <p>Información necesaria para confirmar el contrato.</p>
+
+    <h3><strong>Datos del Supervisor o Jefe Directo:</strong></h3>
+    <p>Información del supervisor o jefe directo que pueda confirmar la ejecución del contrato sin problemas.</p>
+
+    <h3><strong>Copia de Recibo Público de Residencia:</strong></h3>
+    <p>Una copia de un recibo público que respalde tu lugar de residencia.</p>
+
+    <h3><strong>RUT (Registro Único Tributario):</strong></h3>
+    <p>Proporciona el RUT actualizado de tu empresa, con una vigencia no superior a 30 días.</p>
+
+    <p>Nuestro principal objetivo es asegurar tu seguridad, por ello, verificaremos tu identidad y la veracidad de la
+      información, si cumples con todos los requisitos podrás disfrutar de tu alivio económico.</p>
+
+    <em>Te podremos solicitar documentos adicionales en casos específicos.</em>
+
+  </div>
+
+  <br>
+
+
+
+  <div class="grid justify-content-center">
+    <div class="col">
+      <p-button label="Cancelar" (onClick)="cancelAction()" icon="pi pi-times" styleClass="p-button-help"
+        iconPos="left"></p-button>
+    </div>
+
+    <div class="col-fixed">
+      <p-button icon="pi pi-check" (click)="confirmDocumentsReq()" label="Sí, tengo los documentos listos"
+        styleClass="p-button-help"></p-button>
+    </div>
+  </div>
+
+</p-dialog>
