@@ -1,10 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 //Inicio servicio
 import { CargarScriptsService } from '../cargar-scripts.service';
-import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha'
 // Fin servicio
 import { LoginComponent } from './components/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
@@ -16,7 +15,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
 import { CardModule } from 'primeng/card';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
@@ -30,8 +29,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { MainLandingComponent } from './components/main-landing/main-landing.component';
 import { AboutComponent } from './components/about/about.component';
-import { FormRegisterComponent } from './components/form-register/form-register.component';
-import { ThankyouPageComponent } from './components/form-register/thankyou-page/thankyou-page.component';
 import { EmailService } from '../services/email.service';
 import { StepFormRegisterComponent } from './components/step-form-register/step-form-register.component';
 import { InfoPersonComponent } from './components/step-form-register/info-person/info-person.component';
@@ -54,12 +51,10 @@ import { MessageLocalService } from '../services/messageLocal.service';
 import { LoanService } from '../services/loan.service';
 import { CompletedApplicationComponent } from './components/completed-application/completed-application.component';
 import { CheckboxModule } from 'primeng/checkbox';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { DetailUserComponent } from './components/dashboard/detail-user/detail-user.component';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { UsersMockService } from '../services/usersMock.service';
@@ -71,8 +66,6 @@ import { UsersMockService } from '../services/usersMock.service';
     LoanCalculatorComponent,
     MainLandingComponent,
     AboutComponent,
-    FormRegisterComponent,
-    ThankyouPageComponent,
     StepFormRegisterComponent,
     InfoPersonComponent,
     FinanceInfoComponent,
@@ -82,9 +75,7 @@ import { UsersMockService } from '../services/usersMock.service';
     StepFormPersonNaturalComponent,
     CreditCalculatorValidationComponent,
     CompletedApplicationComponent,
-    DashboardComponent,
     MenuComponent,
-    DetailUserComponent,
   ],
   imports: [
     CommonModule,
@@ -107,8 +98,6 @@ import { UsersMockService } from '../services/usersMock.service';
     StepsModule,
     ConfirmDialogModule,
     AccordionModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
     InputTextModule,
     DropdownModule,
     InputNumberModule,
@@ -127,7 +116,6 @@ import { UsersMockService } from '../services/usersMock.service';
   exports: [
     LoginComponent,
     LandingComponent,
-    FormRegisterComponent,
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
    providers: [
