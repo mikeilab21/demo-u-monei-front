@@ -45,6 +45,7 @@ import { TableModule } from 'primeng/table';
 import { UsersMockService } from './services/usersMock.service';
 import { TagModule } from 'primeng/tag';
 
+
 @NgModule({
   declarations: [
     AppComponent,
